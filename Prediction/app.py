@@ -1,25 +1,25 @@
 import streamlit as st
-
-#changing background color
-# st.markdown("""
-#     <style>
-#         body {
-#             background-color: lightblue;
-#         }
-#     </style>
-#     """, unsafe_allow_html=True)
-
-#-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
+import sklearn
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-import re
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
 import nltk
+import re
+
+# Download NLTK corpora
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+nltk.download('punkt_tab')
+
 
 # Load the model, vectorizer, and encoder
-model_xgb = pickle.load(open("model_xgb.pkl", "rb"))
+# model_xgb = pickle.load(open("model_xgb.pkl", "rb"))
 model = pickle.load(open("model_logistic.pkl", "rb"))
 vectorizer = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
 encoder = pickle.load(open("label_encoder.pkl", "rb"))  # Load the saved LabelEncoder
